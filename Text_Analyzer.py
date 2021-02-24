@@ -74,12 +74,13 @@ if selection not in [1, 2, 3]:
     print("You have entered wrong input.")
     exit()
 
-selected_text = TEXTS[selection - 1]
-
 # Text to clean words
-words_of_selected_text = selected_text.replace("\n", "").replace(",", "").replace(".","").strip().split(" ")
-print("words_of_selected_text")
+selected_text_list = TEXTS[selection - 1].strip().split(" ")
+words_of_selected_text = []
 
+for word in selected_text_list:
+    words_of_selected_text.append(word.strip(",.\n"))
+ 
 # Word counter
 number_of_words = len(words_of_selected_text)
 
