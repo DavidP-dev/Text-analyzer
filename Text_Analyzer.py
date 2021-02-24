@@ -28,6 +28,7 @@ other freshwater genera and herring similar to those
 in modern oceans. Other fish such as paddlefish, 
 garpike and stingray are also present.'''
 ]
+
 USERS = """
 | USER |   PASSWORD  |
 -----------------------
@@ -38,15 +39,16 @@ USERS = """
 """
 
 # Sign in
-print(60*"-")
-username_input = input(f"Hello,\nhere are prewriten users for testing:{USERS}\nEnter your username: " )
+print(60 * "-")
+username_input = input(f"Hello,\nhere are prewriten users for testing:{USERS}\nEnter your username: ")
 password_input = input("And now,\nenter your password please : ")
 
 sign_in_list = list((username_input, password_input))
-sign_in_data = [["bob", "123"], ["ann", "pass123"], ["mike", "password123"], ["mike", "password123"], ["liz", "pass123"]]
+sign_in_data = [["bob", "123"], ["ann", "pass123"], ["mike", "password123"], ["mike", "password123"],
+                ["liz", "pass123"]]
 
 if sign_in_list in sign_in_data:
-    print(60* "-")
+    print(60 * "-")
     print(f"\nWelcome to the Text Analyzer, {username_input}.")
 
 else:
@@ -80,41 +82,35 @@ words_of_selected_text = []
 
 for word in selected_text_list:
     words_of_selected_text.append(word.strip(",.\n"))
- 
-# Word counter
-number_of_words = len(words_of_selected_text)
 
+# Word counter
 # Words with first character big
+# Words with all upper characters
+# Words with all lower characters
+# Number of numbers
+# Sum of numbers
+# Occurrences
+number_of_words = len(words_of_selected_text)
 first_upper = 0
+all_upper = 0
+all_lower = 0
+numbers = 0
+sum_of_numbers = 0
+occurences = []
+
 for word in words_of_selected_text:
     if word[0].isupper():
         first_upper += 1
-
-
-# Words with all upper characters
-all_upper = 0
-for word in words_of_selected_text:
     if word.isupper() and word.isalpha():
         all_upper += 1
-
-# Words with all lower charracters
-all_lower = 0
-for word in words_of_selected_text:
     if word.islower():
         all_lower += 1
-
-# Number of numbers
-numbers = 0
-for number in words_of_selected_text:
-    if number.isnumeric():
+    if word.isnumeric():
         numbers += 1
-# Sum of numbers
-sum_of_numbers = 0
-for number in words_of_selected_text:
-    if number.isnumeric():
-        sum_of_numbers += int(number)
+        sum_of_numbers += int(word)
+    occurences.append(len(word))
 
-# Lenght counter
+lenghts = list(set(occurences))
 
 # Print all
 print(60 * "-")
@@ -158,17 +154,9 @@ if sum_of_numbers == 0:
 else:
     print(f"The sum of all numbers is {sum_of_numbers}.")
 
-# Occurrences
-occurences = []
-
-for word in words_of_selected_text:
-    occurences.append(len(word))
-
-lenghts = list(set(occurences))
-
 # Print graph
 print(60 * "-")
 print("LEN | OCCURENCES | NR.")
 for lenght in lenghts:
-    print(lenght, "|",  occurences.count(lenght) * "*", "|", occurences.count(lenght))
+    print(lenght, "|", occurences.count(lenght) * "*", "|", occurences.count(lenght))
 print(60 * "-")
